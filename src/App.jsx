@@ -23,6 +23,7 @@ function App() {
   return (
     <div style={{ padding: "20px 160px" }}>
       <h1>Crime Statistics - São Paulo</h1>
+	  <h2>Per 100,000 inhabitants</h2>
 
       <CrimeChart data={data} crime="homicides" />
 	  <CrimeChart data={data} crime="thefts" />
