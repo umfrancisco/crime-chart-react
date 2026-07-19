@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://staging-api-public-security-a9e2.encr.app",
 });
 
 export const getCrimeData = async () => {
