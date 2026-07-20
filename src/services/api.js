@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://staging-api-public-security-a9e2.encr.app",
+  baseURL: "http://localhost:4000",
 });
 
-export const getCrimeData = async () => {
-  const response = await api.get("/data");
+export const getCrimeData = async (city) => {
+  const response = await api.get(`/api/${city}`);
   return response.data.Content;
 };

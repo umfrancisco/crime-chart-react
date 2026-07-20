@@ -2,3 +2,22 @@ body {
 	background-color: black;
 	color: white;
 }
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.container {
+	margin: 20px 160px;
+}
+
+.options {
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+	.container {
+		margin: 0 0;
+	}
+}
