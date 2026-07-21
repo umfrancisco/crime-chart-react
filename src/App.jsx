@@ -63,7 +63,7 @@ function App() {
       <br />
 
       <a href="https://www.ssp.sp.gov.br/estatistica/dados-mensais">
-        Fonte: Secretaria de Segurança Pública do Estado de São Paulo, 2026
+		Source: São Paulo State Public Security Department, 2026
       </a>
     </div>
   );
