@@ -1,23 +1,25 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 body {
 	background-color: black;
 	color: white;
 }
 
-a {
-	text-decoration: none;
-	color: white;
-}
-
 .container {
-	margin: 20px 160px;
+	max-width: 1024px;
+  	margin: 0 auto;
 }
 
 .options {
 	text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 	.container {
-		margin: 0 0;
+		max-width: 768px;
 	}
 }

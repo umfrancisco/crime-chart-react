@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import {
   LineChart,
   Line,
@@ -9,22 +10,34 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+const Container = styled.div`
+  margin-top: 16px;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    margin-right: 32px;
+  }
+`
+
 // homicides, thefts, robberies
-export default function CrimeChart({ data, crime }) {
+function CrimeChart({ data, crime }) {
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <LineChart data={data}>
-        <CartesianGrid />
-        <XAxis dataKey="year" />
-        <YAxis />
-        <Tooltip 
-			contentStyle={{ backgroundColor: "white", border: "none" }} 
-			itemStyle={{ color: "black" }}
-			labelStyle={{ color: "black" }}
-			/>
-        <Legend />
-        <Line type="monotone" dataKey={crime} />
-      </LineChart>
-    </ResponsiveContainer>
+    <Container className="container">
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart data={data}>
+          <CartesianGrid />
+          <XAxis dataKey="year" />
+          <YAxis />
+          <Tooltip 
+            contentStyle={{ backgroundColor: "white", border: "none" }} 
+            itemStyle={{ color: "black" }}
+            labelStyle={{ color: "black" }}/>
+          <Legend />
+          <Line type="monotone" dataKey={crime} />
+        </LineChart>
+      </ResponsiveContainer>
+    </Container>
   );
 }
+
+export default CrimeChart
