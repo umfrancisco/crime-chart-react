@@ -4,6 +4,8 @@ import CrimeTable from "./CrimeTable";
 import CrimeChart from "./CrimeChart";
 import styled from "styled-components";
 
+const backgroundColor = "#252525"
+
 const Title = styled.div`
     > h2 {
         margin-bottom: 8px;
@@ -17,20 +19,35 @@ const Title = styled.div`
 `
 
 const Header = styled.header`
-    margin-top: 32px;
+    background-color: ${backgroundColor};
+    padding-top: 32px;
+    padding-bottom: 32px;
     margin-bottom: 64px;
     text-align: center;
+
+    select {
+        border: none;
+        padding: 4px 6px;
+        border-radius: 8px;
+    }
 `
 
-const Link = styled.p`
+const Footer = styled.div`
+    background-color: ${backgroundColor};
     margin-top: 64px;
-    margin-bottom: 128px;
+    padding-top: 64px;
+    padding-bottom: 64px;
     text-align: center;
 
     > a {
         text-decoration: none;
 	    color: white;
     }
+`
+
+const Loading = styled.div`
+    margin-top: 32px;
+    margin: 0 auto;
 `
 
 function Dashboard() {
@@ -53,27 +70,32 @@ function Dashboard() {
     ];
 
     useEffect(() => {
-        setLoading(true);
-
         getCrimeData(city)
             .then((res) => {
                 const sorted = res.sort((a, b) => a.year - b.year);
                 setData(sorted);
-            })
-            .catch((err) => console.error(err))
-            .finally(() => setLoading(false));
+                setLoading(false);
+            });
     }, [city]);
 
     if (loading) {
         return (
-            <div className="container">
-                <p>Loading...</p>
-            </div>
+            <>
+                <Header>
+                    <Title>
+                        <h2>Crime Statistics</h2>
+                        <h4>Per 100,000 inhabitants</h4>
+                    </Title>
+                </Header>
+                <div className="container">
+                    <Loading className="loader" />
+                </div>
+            </>
         )
     }
     
     return (
-        <div className="container">
+        <>
             <Header>
                 <Title>
                     <h2>Crime Statistics</h2>
@@ -81,7 +103,6 @@ function Dashboard() {
                 </Title>
 
                 <div>
-                    <label>Select city: </label>
                     <select value={city} onChange={(e) => setCity(e.target.value)}>
                         {cities.map((c) => (
                             <option key={c.value} value={c.value}>
@@ -91,18 +112,20 @@ function Dashboard() {
                     </select>
                 </div>
             </Header>
+            <div className="container">
 
-            <CrimeChart data={data} crime="homicides" />
-            <CrimeChart data={data} crime="thefts" />
-            <CrimeChart data={data} crime="robberies" />
+                <CrimeChart data={data} crime="homicides" />
+                <CrimeChart data={data} crime="thefts" />
+                <CrimeChart data={data} crime="robberies" />
 
-            {/* <h2>Data Table</h2>
-            <CrimeTable data={data} /> */}
+                {/* <h2>Data Table</h2>
+                <CrimeTable data={data} /> */}
 
-            <Link>
+            </div>
+            <Footer>
                 <a href="https://www.ssp.sp.gov.br/estatistica/dados-mensais">Source: São Paulo State Public Security Department, 2026</a>
-            </Link>
-        </div>
+            </Footer>
+        </>
     )
 }
 
