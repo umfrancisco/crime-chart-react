@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
-  baseURL: "https://staging-api-public-security-a9e2.encr.app",
+  baseURL: apiUrl,
 });
 
 export const getCrimeData = async (city) => {
